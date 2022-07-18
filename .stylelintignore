@@ -1,0 +1,6 @@
+.idea
+.vscode
+.husky
+dist
+node_modules
+storybook
