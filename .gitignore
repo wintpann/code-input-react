@@ -4,5 +4,5 @@
 node_modules
 dist
 
-storybook/node_modules
-storybook/storybook-static
+example/node_modules
+example/build

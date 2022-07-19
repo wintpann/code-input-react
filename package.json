@@ -25,19 +25,18 @@
     "dist"
   ],
   "scripts": {
-    "install-all": "yarn install && yarn build && yarn --cwd storybook install",
+    "install-all": "yarn install && yarn --cwd example install",
     "prettier": "prettier --write src --ignore-unknown",
     "eslint": "eslint --fix src --ext .js,.jsx,.ts,.tsx",
     "lint": "yarn typecheck && yarn eslint && yarn prettier",
     "typecheck": "tsc --noEmit",
-    "build:dev": "npx cross-env NODE_ENV=development rollup -c -w",
     "build:prod": "npx cross-env NODE_ENV=production rollup -c",
     "build:types": "tsc --emitDeclarationOnly",
-    "storybook": "yarn --cwd storybook storybook",
-    "dev:local": "npx cross-env DISABLE_ESLINT_PLUGIN=true react-app-rewired start",
-    "dev:examples": "npx cross-env NODE_ENV=development rollup -c && npx concurrently \"yarn storybook\" \"yarn build:dev\"",
+    "build:example": "yarn --cwd example build",
+    "install:example": "yarn --cwd example install",
+    "dev": "npx cross-env DISABLE_ESLINT_PLUGIN=true react-app-rewired start",
     "build": "yarn lint && rimraf dist && yarn build:types && yarn build:prod",
-    "build:demo": "yarn --cwd storybook build-storybook"
+    "release": "yarn build && npx np"
   },
   "browserslist": [
     ">0.2%",
