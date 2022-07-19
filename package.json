@@ -13,8 +13,7 @@
     "install-all": "yarn install && yarn build && yarn --cwd storybook install",
     "prettier": "prettier --write src --ignore-unknown",
     "eslint": "eslint --fix src --ext .js,.jsx,.ts,.tsx",
-    "stylelint": "stylelint --fix \"src/**/*.{css,scss}\" --allow-empty-input",
-    "lint": "yarn typecheck && yarn stylelint && yarn eslint && yarn prettier",
+    "lint": "yarn typecheck && yarn eslint && yarn prettier",
     "typecheck": "tsc --noEmit",
     "build:dev": "npx cross-env NODE_ENV=development rollup -c -w",
     "build:prod": "npx cross-env NODE_ENV=production rollup -c",
@@ -69,10 +68,6 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
     "storybox-react": "^1.0.6",
-    "stylelint": "^14.9.1",
-    "stylelint-config-idiomatic-order": "^8.1.0",
-    "stylelint-config-prettier-scss": "^0.0.1",
-    "stylelint-config-standard-scss": "^5.0.0",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   },
@@ -82,7 +77,6 @@
       "prettier --write --ignore-unknown"
     ],
     "*.{css,scss}": [
-      "stylelint --fix \"**/*.{css,scss}\"",
       "prettier --write --ignore-unknown"
     ]
   },

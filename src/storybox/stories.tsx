@@ -8,18 +8,18 @@ import {
 import { CodeInputReact, CodeInputReactProps, CodeInputReactRef } from '../core';
 
 const StoryWrapper: FC<PropsWithChildren> = ({ children }) => (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100%',
-      }}
-    >
-      {children}
-    </div>
-  );
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      height: '100%',
+    }}
+  >
+    {children}
+  </div>
+);
 
 const Default = () => {
   const controlRef = useRef<CodeInputReactRef>(null);
