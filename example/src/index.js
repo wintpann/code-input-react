@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'storybox-react/dist/styles.css';
+import 'code-input-react/dist/style.min.css';
 import { StoryBox } from 'storybox-react';
 import { stories } from './storybox/stories';
 
