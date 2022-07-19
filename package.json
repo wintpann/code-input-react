@@ -34,8 +34,8 @@
     "build:prod": "npx cross-env NODE_ENV=production rollup -c",
     "build:types": "tsc --emitDeclarationOnly",
     "storybook": "yarn --cwd storybook storybook",
-    "dev:storybox": "npx cross-env DISABLE_ESLINT_PLUGIN=true react-app-rewired start",
-    "dev:storybook": "npx cross-env NODE_ENV=development rollup -c && npx concurrently \"yarn storybook\" \"yarn build:dev\"",
+    "dev:local": "npx cross-env DISABLE_ESLINT_PLUGIN=true react-app-rewired start",
+    "dev:examples": "npx cross-env NODE_ENV=development rollup -c && npx concurrently \"yarn storybook\" \"yarn build:dev\"",
     "build": "yarn lint && rimraf dist && yarn build:types && yarn build:prod",
     "build:demo": "yarn --cwd storybook build-storybook"
   },
