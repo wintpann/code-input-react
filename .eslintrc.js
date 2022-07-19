@@ -51,6 +51,7 @@ module.exports = {
       },
     ],
     'arrow-body-style': ['error', 'as-needed'],
+    "react/jsx-curly-brace-presence": "error"
   },
   settings: {
     react: {

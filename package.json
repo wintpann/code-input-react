@@ -68,7 +68,7 @@
     "rollup": "^2.77.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
-    "storybox-react": "^1.0.5",
+    "storybox-react": "^1.0.6",
     "stylelint": "^14.9.1",
     "stylelint-config-idiomatic-order": "^8.1.0",
     "stylelint-config-prettier-scss": "^0.0.1",

@@ -1,0 +1,45 @@
+.code-input-react {
+  box-sizing: border-box;
+
+  &--invalid {
+    .code-input-react__digit {
+      border-color: #d31212;
+      border-width: 2px;
+
+      &:focus {
+        outline-color: rgba(253, 131, 131, 0.5);
+      }
+    }
+  }
+
+  &--disabled {
+    .code-input-react__digit {
+      pointer-events: none;
+      border-color: #e0e0e0;
+      color: #ababab;
+    }
+  }
+
+  &__digit {
+    border-radius: 5px;
+    border: 1px solid #c9c9c9;
+    text-align: center;
+    width: 44px;
+    height: 50px;
+    color: #424242;
+    background-color: white;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 24px;
+    transition: outline 0.2s, border-color 0.2s;
+    outline: 3px solid transparent;
+
+    &:not(:last-of-type) {
+      margin-right: 10px;
+    }
+
+    &:focus {
+      outline-color: rgba(131, 192, 253, 0.5);
+    }
+  }
+}

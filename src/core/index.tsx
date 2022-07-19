@@ -6,13 +6,15 @@ import React, {
   useEffect,
   useRef,
 } from 'react';
+import classNames from 'classnames';
+import './index.scss';
 
 export type CodeInputReactRef = {
   /**
    * Focus n-th digit.
    * @param [nth=0]
    */
-  focus?: (nth?: number) => void;
+  focus: (nth?: number) => void;
 };
 
 export type CodeInputReactProps = {
@@ -61,7 +63,11 @@ export type CodeInputReactProps = {
   /**
    * Ref to control input outside
    */
-  controlRef?: MutableRefObject<CodeInputReactRef | undefined>;
+  controlRef?: MutableRefObject<CodeInputReactRef | null>;
+  /**
+   * Container className
+   */
+  className?: string;
 };
 
 const WASH_REGEX: {
@@ -91,6 +97,7 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
   focusOnInvalid = true,
   focusUnfilled = true,
   controlRef,
+  className,
 }) => {
   const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
   const paddedValue = value.padEnd(length).substring(0, length);
@@ -195,7 +202,14 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
   }, []);
 
   return (
-    <div>
+    <div
+      className={classNames({
+        'code-input-react': true,
+        [className as string]: Boolean(className),
+        'code-input-react--invalid': !valid,
+        'code-input-react--disabled': disabled,
+      })}
+    >
       {paddedValue
         .substring(0, length)
         .split('')
@@ -204,6 +218,7 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
             type="text"
             data-index={index}
             autoFocus={autoFocus && index === 0}
+            className="code-input-react__digit"
             key={`input_${index}`}
             onFocus={(e) => e.target.select()}
             value={letter === EMPTY_VALUE ? '' : letter}

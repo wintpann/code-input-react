@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { FC, PropsWithChildren, useRef, useState } from 'react';
 import {
   useBooleanControl,
   useButtonControl,
@@ -7,8 +7,22 @@ import {
 } from 'storybox-react';
 import { CodeInputReact, CodeInputReactProps, CodeInputReactRef } from '../core';
 
+const StoryWrapper: FC<PropsWithChildren> = ({ children }) => (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+      }}
+    >
+      {children}
+    </div>
+  );
+
 const Default = () => {
-  const controlRef = useRef<CodeInputReactRef>({});
+  const controlRef = useRef<CodeInputReactRef>(null);
 
   const [length] = useNumberControl({
     name: 'length',
@@ -33,7 +47,7 @@ const Default = () => {
   useButtonControl({
     name: 'focus on nth digit',
     onClick: () => {
-      controlRef.current.focus?.(nth - 1);
+      controlRef.current?.focus(nth - 1);
     },
   });
 
@@ -56,18 +70,20 @@ const Default = () => {
   const [value, setValue] = useState('');
 
   return (
-    <CodeInputReact
-      length={length}
-      value={value}
-      onChange={setValue}
-      autoFocus={autoFocus}
-      disabled={disabled}
-      focusUnfilled={focusUnfilled}
-      focusOnInvalid={focusOnInvalid}
-      type={type as CodeInputReactProps['type']}
-      valid={valid}
-      controlRef={controlRef}
-    />
+    <StoryWrapper>
+      <CodeInputReact
+        length={length}
+        value={value}
+        onChange={setValue}
+        autoFocus={autoFocus}
+        disabled={disabled}
+        focusUnfilled={focusUnfilled}
+        focusOnInvalid={focusOnInvalid}
+        type={type as CodeInputReactProps['type']}
+        valid={valid}
+        controlRef={controlRef}
+      />
+    </StoryWrapper>
   );
 };
 
