@@ -9321,10 +9321,10 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
-storybox-react@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/storybox-react/-/storybox-react-1.0.4.tgz#69438de586dae377a2a854d0157a4dbd0ad60f98"
-  integrity sha512-Lg6uNjbGdrBglErKqpPrNFLlGXtfyfmQR+R8FtWXiNDJWXuAVAY0wAbyhhRp98Y2tMQJyrlrAftz9UwJnx7RPQ==
+storybox-react@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/storybox-react/-/storybox-react-1.0.5.tgz#0c41184286e260354f78ca3de7db43694df37c14"
+  integrity sha512-SzPIDhv8/GFZcP0wywlcKGJhgRrSyny3KNLNiv7xeqV8vNmBA96wkL56d5Fx00mHXFtOqfy4OFLG5Tcz6BAz9w==
 
 string-argv@^0.3.1:
   version "0.3.1"
