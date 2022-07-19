@@ -10,13 +10,20 @@
         outline-color: rgba(253, 131, 131, 0.5);
       }
     }
+
+    &.code-input-react--disabled .code-input-react__digit {
+      border-width: 1px;
+    }
   }
 
   &--disabled {
+    pointer-events: none;
+    user-select: none;
+
     .code-input-react__digit {
-      pointer-events: none;
       border-color: #e0e0e0;
-      color: #ababab;
+      color: #8c8c8c;
+      background-color: #fafafa;
     }
   }
 
@@ -31,7 +38,7 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 24px;
-    transition: outline 0.2s, border-color 0.2s;
+    transition: outline 0.2s, border-color 0.2s, background-color 0.2s;
     outline: 3px solid transparent;
 
     &:not(:last-of-type) {

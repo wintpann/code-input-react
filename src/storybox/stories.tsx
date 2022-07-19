@@ -1,9 +1,10 @@
-import React, { FC, PropsWithChildren, useRef, useState } from 'react';
+import React, { FC, PropsWithChildren, useRef } from 'react';
 import {
   useBooleanControl,
   useButtonControl,
   useNumberControl,
   useRadioControl,
+  useStringControl,
 } from 'storybox-react';
 import { CodeInputReact, CodeInputReactProps, CodeInputReactRef } from '../core';
 
@@ -67,7 +68,12 @@ const Default = () => {
     options: ['number', 'text'],
   });
 
-  const [value, setValue] = useState('');
+  const [value, setValue] = useStringControl({
+    name: 'value',
+    defaultValue: '',
+    maxLength: length,
+    minLength: 0,
+  });
 
   return (
     <StoryWrapper>

@@ -193,12 +193,14 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
   }, [valid]);
 
   useExhaustiveEffect(() => {
-    if (controlRef?.current) {
-      controlRef.current.focus = (nth = 0) => {
+    if (!controlRef) return;
+
+    controlRef.current = {
+      focus: (nth = 0) => {
         const target = inputsRef.current[nth];
         if (target) target.focus();
-      };
-    }
+      },
+    };
   }, []);
 
   return (
