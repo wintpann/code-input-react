@@ -29,7 +29,7 @@ const Default = () => {
     name: 'length',
     min: 4,
     max: 8,
-    defaultValue: 4,
+    defaultValue: 6,
     appearance: 'range',
     integerOnly: true,
     step: 1,
@@ -56,9 +56,12 @@ const Default = () => {
 
   const [disabled] = useBooleanControl({ name: 'disabled', defaultValue: false });
 
-  const [focusUnfilled] = useBooleanControl({ name: 'focusUnfilled', defaultValue: true });
-
   const [focusOnInvalid] = useBooleanControl({ name: 'focusOnInvalid', defaultValue: true });
+
+  const [focusNextFilledDigit] = useBooleanControl({
+    name: 'focusNextFilledDigit',
+    defaultValue: false,
+  });
 
   const [valid] = useBooleanControl({ name: 'valid', defaultValue: true });
 
@@ -73,6 +76,7 @@ const Default = () => {
     defaultValue: '',
     maxLength: length,
     minLength: 0,
+    washRegex: type === 'number' ? /\D/g : undefined,
   });
 
   return (
@@ -83,8 +87,8 @@ const Default = () => {
         onChange={setValue}
         autoFocus={autoFocus}
         disabled={disabled}
-        focusUnfilled={focusUnfilled}
         focusOnInvalid={focusOnInvalid}
+        focusNextFilledDigit={focusNextFilledDigit}
         type={type as CodeInputReactProps['type']}
         valid={valid}
         controlRef={controlRef}

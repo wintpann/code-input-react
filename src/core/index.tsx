@@ -56,10 +56,10 @@ export type CodeInputReactProps = {
    */
   focusOnInvalid?: boolean;
   /**
-   * Focus on first unfilled digit after last digit gets filled, so user can fill unfilled digit
-   * @param [focusUnfilled=true]
+   * Focus next digit EVEN if it's already filled
+   * @param [focusNextFilledDigit=false]
    */
-  focusUnfilled?: boolean;
+  focusNextFilledDigit?: boolean;
   /**
    * Ref to control input outside
    */
@@ -95,7 +95,7 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
   autoFocus = true,
   type = 'number',
   focusOnInvalid = true,
-  focusUnfilled = true,
+  focusNextFilledDigit = false,
   controlRef,
   className,
 }) => {
@@ -124,18 +124,17 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
 
     if (!focusNewTarget) return;
 
-    const nextSiblingTarget = index < length ? inputsRef.current[index + updated.length] : null;
+    const nextSiblingTarget = inputsRef.current[index + updated.length];
+    const nextSiblingTargetUnfilled = updatedValue[index + updated.length] === EMPTY_VALUE;
     const currentTarget = inputsRef.current[index];
 
-    const nextUnfilledTargetIndex = updatedValue
-      .split('')
-      .findIndex((letter, i) => i < index && letter === EMPTY_VALUE);
-    const nextTarget = inputsRef.current[nextUnfilledTargetIndex];
-    const nextTargetIsUnfilled = nextUnfilledTargetIndex !== -1;
+    const nextTargetIndex = updatedValue.split('').findIndex((letter) => letter === EMPTY_VALUE);
+    const nextTarget = inputsRef.current[nextTargetIndex];
+    const nextTargetIsUnfilled = nextTargetIndex !== -1;
 
-    if (nextSiblingTarget) {
+    if (nextSiblingTarget && (nextSiblingTargetUnfilled || focusNextFilledDigit)) {
       nextSiblingTarget.focus();
-    } else if (nextTarget && nextTargetIsUnfilled && focusUnfilled) {
+    } else if (nextTarget && nextTargetIsUnfilled) {
       nextTarget.focus();
     } else if (currentTarget) {
       currentTarget.blur();
