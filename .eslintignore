@@ -8,6 +8,6 @@
 .husky
 dist
 node_modules
-storybook
+example
 rollup.config.js
 package-lock.json
