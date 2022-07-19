@@ -1,9 +1,24 @@
 {
-  "name": "storybook-lib-boilerplate",
+  "name": "code-input-react",
   "version": "0.0.0",
-  "description": "",
+  "description": "best code input for react",
   "author": "wintpann",
-  "keywords": [],
+  "keywords": ["react", "input", "code", "auth", "otp"],
+  "private": false,
+  "homepage": "https://github.com/wintpann/code-input-react",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wintpann/code-input-react.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wintpann/code-input-react/issues",
+    "email": "vvintpann@gmail.com"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
