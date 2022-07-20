@@ -28,7 +28,7 @@ const MyInputCode = ({ validate, length }) => {
         valid={meta.valid}
         disabled={meta.disabled}
       />
-      {meta.loading && <div style={style.textSmall}>checking...</div>}
+      <div style={style.textSmall}>{meta.loading && 'checking...'}</div>
     </div>
   );
 };

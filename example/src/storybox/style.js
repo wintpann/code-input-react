@@ -7,7 +7,13 @@ export const style = {
     height: '100%',
     flexDirection: 'column',
   },
-  textSmall: { textAlign: 'center', fontSize: '14px', marginTop: '5px', color: '#555' },
+  textSmall: {
+    textAlign: 'center',
+    fontSize: '14px',
+    marginTop: '5px',
+    color: '#555',
+    height: '21px',
+  },
   button: {
     borderRadius: '8px',
     padding: '10px',
