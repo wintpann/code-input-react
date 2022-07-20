@@ -15,6 +15,10 @@ export type CodeInputReactRef = {
    * @param [nth=0]
    */
   focus: (nth?: number) => void;
+  /**
+   * Use it if you need access for inputs
+   */
+  inputs: Array<HTMLInputElement | null>;
 };
 
 export type CodeInputReactProps = {
@@ -27,9 +31,13 @@ export type CodeInputReactProps = {
    */
   value: string;
   /**
-   * Change event handler
+   * Change handler
    */
   onChange: (value: string) => void;
+  /**
+   * Change handler, invokes only if all digits are filled
+   */
+  onComplete?: (value: string) => void;
   /**
    * Disabled flag
    * @param [disabled=false]
@@ -63,7 +71,7 @@ export type CodeInputReactProps = {
   /**
    * Ref to control input outside
    */
-  controlRef?: MutableRefObject<CodeInputReactRef | null>;
+  innerRef?: MutableRefObject<CodeInputReactRef | null>;
   /**
    * Container className
    */
@@ -80,8 +88,8 @@ const WASH_REGEX: {
   DENY_SPACE: {
     number: /\D/g,
   },
-};
-
+} as const;
+const SPACE_REGEX = /\s/g;
 const EMPTY_VALUE = ' ';
 
 const useExhaustiveEffect = useEffect;
@@ -90,13 +98,14 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
   length,
   value,
   onChange,
+  onComplete,
   disabled = false,
   valid = false,
   autoFocus = true,
   type = 'number',
   focusOnInvalid = true,
   focusNextFilledDigit = false,
-  controlRef,
+  innerRef,
   className,
 }) => {
   const inputsRef = useRef<Array<HTMLInputElement | null>>([]);
@@ -121,6 +130,11 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
     const updatedValue = (beforeUpdated + updated + afterUpdated).substring(0, length);
 
     onChange(updatedValue);
+
+    const isComplete = updatedValue.replace(SPACE_REGEX, '').length === length;
+    if (isComplete && onComplete) {
+      onComplete(updatedValue);
+    }
 
     if (!focusNewTarget) return;
 
@@ -192,13 +206,14 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
   }, [valid]);
 
   useExhaustiveEffect(() => {
-    if (!controlRef) return;
+    if (!innerRef) return;
 
-    controlRef.current = {
+    innerRef.current = {
       focus: (nth = 0) => {
         const target = inputsRef.current[nth];
         if (target) target.focus();
       },
+      inputs: inputsRef.current,
     };
   }, []);
 
@@ -229,6 +244,9 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
             inputMode={type === 'number' ? 'numeric' : 'text'}
             ref={(node) => {
               inputsRef.current[index] = node;
+              if (innerRef?.current?.inputs) {
+                innerRef.current.inputs[index] = node;
+              }
             }}
           />
         ))}

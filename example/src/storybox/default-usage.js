@@ -19,7 +19,7 @@ export const DefaultUsage = () => {
 
   const onCodeChange = async (code) => {
     setState({ value: code, valid: true, disabled: false, validating: false, ok: false });
-    const numbers = code.replace(/\D/g, '');
+    const numbers = code.replace(/\S/g, '');
     if (numbers.length !== codeLength) return;
 
     setState((prev) => ({ ...prev, disabled: true, validating: true }));

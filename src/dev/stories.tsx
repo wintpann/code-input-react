@@ -23,7 +23,7 @@ const StoryWrapper: FC<PropsWithChildren> = ({ children }) => (
 );
 
 const Default = () => {
-  const controlRef = useRef<CodeInputReactRef>(null);
+  const innerRef = useRef<CodeInputReactRef>(null);
 
   const [length] = useNumberControl({
     name: 'length',
@@ -48,7 +48,7 @@ const Default = () => {
   useButtonControl({
     name: 'focus on nth digit',
     onClick: () => {
-      controlRef.current?.focus(nth - 1);
+      innerRef.current?.focus(nth - 1);
     },
   });
 
@@ -85,13 +85,14 @@ const Default = () => {
         length={length}
         value={value}
         onChange={setValue}
+        onComplete={(code) => console.log('COMPLETE:', code)}
         autoFocus={autoFocus}
         disabled={disabled}
         focusOnInvalid={focusOnInvalid}
         focusNextFilledDigit={focusNextFilledDigit}
         type={type as CodeInputReactProps['type']}
         valid={valid}
-        controlRef={controlRef}
+        innerRef={innerRef}
       />
     </StoryWrapper>
   );

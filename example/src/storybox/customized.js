@@ -23,7 +23,7 @@ const StoryWrapper = ({ children }) => (
 );
 
 export const Customized = () => {
-  const controlRef = useRef(null);
+  const innerRef = useRef(null);
 
   const [length] = useNumberControl({
     name: 'length',
@@ -48,7 +48,7 @@ export const Customized = () => {
   useButtonControl({
     name: 'focus on nth digit',
     onClick: () => {
-      controlRef.current?.focus(nth - 1);
+      innerRef.current?.focus(nth - 1);
     },
   });
 
@@ -91,7 +91,7 @@ export const Customized = () => {
         focusNextFilledDigit={focusNextFilledDigit}
         type={type}
         valid={valid}
-        controlRef={controlRef}
+        innerRef={innerRef}
       />
     </StoryWrapper>
   );
