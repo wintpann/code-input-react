@@ -1,10 +1,5 @@
-const style = {
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  flexDirection: 'column',
-};
+import { style } from './style';
 
-export const DefaultStoryWrapper = ({ children }) => <div style={style}>{children}</div>;
+export const DefaultStoryWrapper = ({ children }) => (
+  <div style={style.storyWrapper}>{children}</div>
+);

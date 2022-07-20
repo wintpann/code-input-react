@@ -2,60 +2,82 @@ import React, { useState } from 'react';
 import { CodeInputReact } from 'code-input-react';
 import { DefaultStoryWrapper } from './default-story-wrapper';
 import { useButtonControl } from 'storybox-react';
+import { style } from './style';
 
-const validCode = '123456';
-const codeLength = 6;
-const validate = (code) =>
-  new Promise((resolve) => setTimeout(() => resolve(code === validCode), 500));
+/**
+ * Common practice is to create a wrapper around any third-party component to customize it for your needs
+ */
+const MyInputCode = ({ validate, length }) => {
+  const [value, setValue] = useState('');
+  const [meta, setMeta] = useState({ valid: true, disabled: false, loading: false });
+
+  const onComplete = async (code) => {
+    setMeta({ valid: true, disabled: true, loading: true });
+    const isValid = await validate(code);
+    setMeta({ valid: isValid, disabled: isValid, loading: false });
+    if (!isValid) setValue('');
+  };
+
+  return (
+    <div>
+      <CodeInputReact
+        length={length}
+        value={value}
+        onChange={setValue}
+        onComplete={onComplete}
+        valid={meta.valid}
+        disabled={meta.disabled}
+      />
+      {meta.loading && <div style={style.textSmall}>checking...</div>}
+    </div>
+  );
+};
+
+const validateCodeAPI = (code) =>
+  new Promise((resolve) => setTimeout(() => resolve(code === '1234'), 1000));
+
+const STEP = {
+  PRE_VALIDATING: 0,
+  VALIDATING: 1,
+  VALIDATED: 2,
+};
+
+const DefaultStory = () => {
+  const [step, setStep] = useState(STEP.PRE_VALIDATING);
+
+  const validate = async (code) => {
+    const isValid = await validateCodeAPI(code);
+    if (isValid) setStep(STEP.VALIDATED);
+    return isValid;
+  };
+
+  return (
+    <div>
+      {step === STEP.PRE_VALIDATING && (
+        <button style={style.button} onClick={() => setStep(STEP.VALIDATING)}>
+          Enter code! (1234)
+        </button>
+      )}
+      {step === STEP.VALIDATING && <MyInputCode length={4} validate={validate} />}
+      {step === STEP.VALIDATED && <div style={style.text}>you're good to go!</div>}
+    </div>
+  );
+};
 
 export const DefaultUsage = () => {
-  const [state, setState] = useState({
-    value: '',
-    valid: true,
-    disabled: false,
-    validating: false,
-    ok: false,
-  });
-
-  const onCodeChange = async (code) => {
-    setState({ value: code, valid: true, disabled: false, validating: false, ok: false });
-    const numbers = code.replace(/\S/g, '');
-    if (numbers.length !== codeLength) return;
-
-    setState((prev) => ({ ...prev, disabled: true, validating: true }));
-    const isValid = await validate(code);
-    setState((prev) => ({
-      valid: isValid,
-      disabled: isValid,
-      value: isValid ? prev.value : '',
-      validating: false,
-      ok: isValid,
-    }));
-  };
+  const [key, setKey] = useState(0);
 
   useButtonControl({
     name: 'start over',
-    onClick: () =>
-      setState({
-        value: '',
-        valid: true,
-        disabled: false,
-        validating: false,
-        ok: false,
-      }),
+    onClick: () => {
+      // changing key to force remount component
+      setKey(key + 1);
+    },
   });
 
   return (
     <DefaultStoryWrapper>
-      <CodeInputReact
-        length={codeLength}
-        onChange={onCodeChange}
-        value={state.value}
-        disabled={state.disabled}
-        valid={state.valid}
-      />
-      {state.validating && <div>validating code ...</div>}
-      {state.ok && <div>ok!</div>}
+      <DefaultStory key={key} />
     </DefaultStoryWrapper>
   );
 };

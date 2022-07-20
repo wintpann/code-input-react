@@ -7,20 +7,9 @@ import {
   useStringControl,
 } from 'storybox-react';
 import { CodeInputReact } from 'code-input-react';
+import { style } from './style';
 
-const StoryWrapper = ({ children }) => (
-  <div
-    style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100%',
-      height: '100%',
-    }}
-  >
-    {children}
-  </div>
-);
+const StoryWrapper = ({ children }) => <div style={style.storyWrapper}>{children}</div>;
 
 export const Customized = () => {
   const innerRef = useRef(null);
@@ -88,6 +77,7 @@ export const Customized = () => {
         autoFocus={autoFocus}
         disabled={disabled}
         focusOnInvalid={focusOnInvalid}
+        onComplete={(code) => console.log('COMPLETE:', code)}
         focusNextFilledDigit={focusNextFilledDigit}
         type={type}
         valid={valid}

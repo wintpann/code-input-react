@@ -100,7 +100,7 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
   onChange,
   onComplete,
   disabled = false,
-  valid = false,
+  valid = true,
   autoFocus = true,
   type = 'number',
   focusOnInvalid = true,

@@ -2901,10 +2901,10 @@ coa@^2.0.2:
     chalk "^2.4.1"
     q "^1.1.2"
 
-code-input-react@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/code-input-react/-/code-input-react-0.0.2.tgz#b655f8155e711904793810da0a24496148ad9e34"
-  integrity sha512-kUJ4S97F4VQqaDSysBAfCC14r9VhdGh0fbVwOlGzsbNwKVeumG23nHI/rOC69FqzDyoOGzy6g6E2iXc+/huy4w==
+code-input-react@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/code-input-react/-/code-input-react-0.0.3.tgz#2c95e93b279ae59eae1b5b89293e4e8ce38775e6"
+  integrity sha512-LEyy6YeK8LmbORbVog0o+FNlyZRBTupCW452vnE7mXY8Bvk+gp1VM8pOFLhf2Ec1kmH+IsYVr5sMwKXIXKKP7g==
   dependencies:
     classnames "^2.3.1"
 
