@@ -234,6 +234,7 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
             type="text"
             data-index={index}
             autoFocus={autoFocus && index === 0}
+            autoComplete={index === 0 ? 'one-time-code' : 'off'}
             className="code-input-react__digit"
             key={`input_${index}`}
             onFocus={(e) => e.target.select()}
