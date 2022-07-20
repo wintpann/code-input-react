@@ -47,11 +47,6 @@ export const Customized = () => {
 
   const [focusOnInvalid] = useBooleanControl({ name: 'focusOnInvalid', defaultValue: true });
 
-  const [focusNextFilledDigit] = useBooleanControl({
-    name: 'focusNextFilledDigit',
-    defaultValue: false,
-  });
-
   const [valid] = useBooleanControl({ name: 'valid', defaultValue: true });
 
   const [type] = useRadioControl({
@@ -78,7 +73,6 @@ export const Customized = () => {
         disabled={disabled}
         focusOnInvalid={focusOnInvalid}
         onComplete={(code) => console.log('COMPLETE:', code)}
-        focusNextFilledDigit={focusNextFilledDigit}
         type={type}
         valid={valid}
         innerRef={innerRef}

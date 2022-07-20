@@ -64,11 +64,6 @@ export type CodeInputReactProps = {
    */
   focusOnInvalid?: boolean;
   /**
-   * Focus next digit EVEN if it's already filled
-   * @param [focusNextFilledDigit=false]
-   */
-  focusNextFilledDigit?: boolean;
-  /**
    * Ref to control input outside
    */
   innerRef?: MutableRefObject<CodeInputReactRef | null>;
@@ -104,7 +99,6 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
   autoFocus = true,
   type = 'number',
   focusOnInvalid = true,
-  focusNextFilledDigit = false,
   innerRef,
   className,
 }) => {
@@ -146,7 +140,7 @@ export const CodeInputReact: FC<CodeInputReactProps> = ({
     const nextTarget = inputsRef.current[nextTargetIndex];
     const nextTargetIsUnfilled = nextTargetIndex !== -1;
 
-    if (nextSiblingTarget && (nextSiblingTargetUnfilled || focusNextFilledDigit)) {
+    if (nextSiblingTarget && nextSiblingTargetUnfilled) {
       nextSiblingTarget.focus();
     } else if (nextTarget && nextTargetIsUnfilled) {
       nextTarget.focus();

@@ -58,11 +58,6 @@ const Default = () => {
 
   const [focusOnInvalid] = useBooleanControl({ name: 'focusOnInvalid', defaultValue: true });
 
-  const [focusNextFilledDigit] = useBooleanControl({
-    name: 'focusNextFilledDigit',
-    defaultValue: false,
-  });
-
   const [valid] = useBooleanControl({ name: 'valid', defaultValue: true });
 
   const [type] = useRadioControl({
@@ -89,7 +84,6 @@ const Default = () => {
         autoFocus={autoFocus}
         disabled={disabled}
         focusOnInvalid={focusOnInvalid}
-        focusNextFilledDigit={focusNextFilledDigit}
         type={type as CodeInputReactProps['type']}
         valid={valid}
         innerRef={innerRef}
