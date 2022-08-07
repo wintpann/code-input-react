@@ -84,3 +84,25 @@ export type CodeInputReactRef = {
   inputs: Array<HTMLInputElement | null>;
 };
 ```
+
+## CHANGELOG
+
+### 0.0.1 `20.07.2022`
+* Initial release
+
+### 0.0.2 `20.07.2022`
+* Fix export
+
+### 0.0.3 `20.07.2022`
+* Add new API
+
+### 0.0.4 `20.07.2022`
+* Change default [valid] param
+* Add usage example
+
+### 0.0.5 `20.07.2022`
+* Add sms autofill
+* Update example
+
+### 0.0.6 `07.08.2022`
+* Update readme
