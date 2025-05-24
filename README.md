@@ -1,14 +1,12 @@
 # Best input code for react
 
-## Current situation with code-input components for React on npm:
-
-* Some of them use keyCode, which is deprecated and don't work correctly in some mobile browsers
-* Some of them are not controllable. You cannot just set value to whatever you want
-* Some of them don't correctly handle paste event
-* Some of them don't have a blur when the last digit gets filled
-* Some of them don't select previous unfilled digit after the last digit gets filled
-* Some of them have style unnecessary inline object styling
-* Some of them use overhead like styled-components for such a simple component
+* We don't use keyCode, which is deprecated and don't work correctly in some mobile browsers
+* We are controllable. You can just set value to whatever you want
+* We correctly handle paste event
+* We have a blur when the last digit gets filled
+* We select previous unfilled digit after the last digit gets filled
+* We don't have unnecessary inline object styling
+* We don't use overhead like styled-components for such a simple component
 
 ## Give it up! Best input code component for React
 
